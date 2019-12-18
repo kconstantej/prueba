@@ -9,7 +9,7 @@ const hbs = require('hbs');
 
 const port =process.env.PORT || 3000;
 
-var ciudades = [];
+
 
 var quito;
 var guayaquil;
