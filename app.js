@@ -11,6 +11,12 @@ const port =process.env.PORT || 3000;
 
 var ciudades = [];
 
+var quito;
+var guayaquil;
+var madrid;
+var paris;
+
+
 const getInfo= async(ciudad) =>{
     try{
         const vec=await getCIudadLatLon(ciudad);
@@ -23,9 +29,43 @@ const getInfo= async(ciudad) =>{
     
 };
 
+const getQuito= async (ciudad)=>{
+    try{
+        quito=await getInfo(ciudad);
+    }catch{
+        console.log('Error');
+    }
+};
+const getGuayaquil= async (ciudad)=>{
+    try{
+        guayaquil=await getInfo(ciudad);
+    }catch{
+        console.log('Error');
+    }
+};
+
+const getMadrid= async (ciudad)=>{
+    try{
+        madrid=await getInfo(ciudad);
+    }catch{
+        console.log('Error');
+    }
+};
+
+const getParis= async (ciudad)=>{
+    try{
+        paris=await getInfo(ciudad);
+    }catch{
+        console.log('Error');
+    }
+};
+
 getInfo('Quito')
 .then(console.log);
-
+getQuito('Quito');
+getGuayaquil('Guayaquil');
+getMadrid('Madrid');
+getParis('Paris')
 getInfo('Guayaquil')
 .then(console.log);
 
@@ -69,7 +109,9 @@ app.get('/', function (req, res) {
 //   res.send(salida);
     res.render('home',{
         nombre: 'kEn cOnStante',
-        anio: new Date().getFullYear()
+        anio: new Date().getFullYear(),
+        quito: quito,
+        guayaquil: guayaquil,
     });
 });
 
@@ -83,15 +125,18 @@ app.get('/home', function (req, res) {
         res.render('home',{
             nombre: 'kEn cOnStante',
             anio: new Date().getFullYear(),
-            quito: getInfo('Quito'),
-            guayaquil: getInfo('Guayaquil'),
+            quito: quito,
+            guayaquil: guayaquil,
 
         });
     });
     
  
 app.get('/about',(req, res)=>{
-    res.render('about');
+    res.render('about',{
+        madrid : madrid,
+        paris : paris
+    });
 });
 
 
