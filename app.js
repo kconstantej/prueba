@@ -21,10 +21,9 @@ const getInfo= async(ciudad) =>{
     try{
         const vec=await getCIudadLatLon(ciudad);
         const vec2=await clima.getClima(vec);
-        ciudades.append(vec2);
         return vec2;
     }catch(error){
-        return 'Error'
+        return error
     }
     
 };
